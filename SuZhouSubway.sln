@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuZhouSubway.Web", "SuZhouSubway.Web\SuZhouSubway.Web.csproj", "{7EAAB7B1-E64E-40C1-A5D8-AA99B90AE09D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuZhouSubway.Model", "SuZhouSubway.Model\SuZhouSubway.Model.csproj", "{7815CA9C-35F3-444C-96BE-ECF1773176D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EAAB7B1-E64E-40C1-A5D8-AA99B90AE09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAAB7B1-E64E-40C1-A5D8-AA99B90AE09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAAB7B1-E64E-40C1-A5D8-AA99B90AE09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAAB7B1-E64E-40C1-A5D8-AA99B90AE09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7815CA9C-35F3-444C-96BE-ECF1773176D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7815CA9C-35F3-444C-96BE-ECF1773176D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7815CA9C-35F3-444C-96BE-ECF1773176D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7815CA9C-35F3-444C-96BE-ECF1773176D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0988739-D7A8-4C63-954B-1DE0ECBDD0D3}
+	EndGlobalSection
+EndGlobal

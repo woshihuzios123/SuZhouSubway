@@ -1,0 +1,76 @@
+﻿@model SuZhouSubway.Model.Category
+@{
+
+    Layout = "_Layout";
+
+}
+
+ 
+<form>
+    <div class="form-group row">
+        <label for="Name" class="col-sm-2 col-form-label">名称</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">状态</div>
+        <div class="col-sm-10">
+            <div class="form-check">
+                @Html.CheckBoxFor(x => x.Enabled, new { @class = "form-check-input" })
+
+                <label class="form-check-label" for="Enabled">
+                    启用/禁用
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="button" onclick="submitForm();" class="btn btn-primary">保存</button>
+        </div>
+    </div>
+    @Html.HiddenFor(x => x.Id)
+</form>
+<script>
+
+    // 提交表单
+    function submitForm() {
+        // 获取值
+        var name = $("#Name").val();
+        var enabled = !!($("#Enabled").val());
+        var id = $("#Id").val();
+
+        var submitData = {
+            name: name,
+            enabled: enabled
+
+        };
+        var url = "/Api/Category/";
+
+        // 判断id是否存在，type 为 put或post
+
+        var submitType = "POST";
+        if (!id) {
+
+        } else {
+            submitType = "PUT";
+            //            submitData.id = id;
+            url = url + id;
+        }
+
+
+        // 提交表单
+        $.ajax({
+            url: url,
+            contentType: "application/json",
+            type: submitType,
+            data: JSON.stringify(submitData)
+        }).done(function () {
+            window.location.href = "/Home/Category";
+        }).fail(function (data) {
+            alert(data);
+        });
+    }
+</script>

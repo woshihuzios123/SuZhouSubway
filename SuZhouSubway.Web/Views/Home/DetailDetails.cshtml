@@ -1,0 +1,12 @@
+﻿@model SuZhouSubway.Model.Detail
+
+<link href="/css/detail.css" />
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">@Model.Title</h1>
+        <p class="lead">
+            @Html.Raw(Model.Contents)
+        </p>
+    </main>
+</div>

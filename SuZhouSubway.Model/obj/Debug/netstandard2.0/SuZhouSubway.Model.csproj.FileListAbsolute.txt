@@ -1,0 +1,9 @@
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\bin\Debug\netstandard2.0\SuZhouSubway.Model.deps.json
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\bin\Debug\netstandard2.0\SuZhouSubway.Model.dll
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\bin\Debug\netstandard2.0\SuZhouSubway.Model.pdb
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\obj\Debug\netstandard2.0\SuZhouSubway.Model.csprojAssemblyReference.cache
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\obj\Debug\netstandard2.0\SuZhouSubway.Model.csproj.CoreCompileInputs.cache
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\obj\Debug\netstandard2.0\SuZhouSubway.Model.AssemblyInfoInputs.cache
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\obj\Debug\netstandard2.0\SuZhouSubway.Model.AssemblyInfo.cs
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\obj\Debug\netstandard2.0\SuZhouSubway.Model.dll
+C:\Users\woshi\source\repos\SuZhouSubway\SuZhouSubway.Model\obj\Debug\netstandard2.0\SuZhouSubway.Model.pdb
