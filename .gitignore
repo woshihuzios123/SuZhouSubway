@@ -2,8 +2,7 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/.vs
-/.vs/SuZhouSubway/v16/Server/sqlite3
+/.vs/SuZhouSubway
 /publish
 /SuZhouSubway.Model/obj
 /SuZhouSubway.Model/bin
