@@ -3,3 +3,8 @@
 ################################################################################
 
 /SuZhouSubway.Model/obj
+/SuZhouSubway.Model/bin
+/SuZhouSubway.Web/obj
+/SuZhouSubway.Web/bin
+/.vs
+/publish
