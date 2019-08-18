@@ -9,15 +9,14 @@ namespace SuZhouSubway.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ApiExplorerSettings]
-    public class CategoryController : ControllerBase
+    public class PersonController : ControllerBase
     {
         private readonly SubwayDbContext _context;
 
         /// <summary>
         /// constructor
         /// </summary>
-        public CategoryController(SubwayDbContext context)
+        public PersonController(SubwayDbContext context)
         {
             _context = context;
         }
@@ -28,9 +27,9 @@ namespace SuZhouSubway.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<Category>> Get()
+        public async Task<IEnumerable<Person>> Get()
         {
-            return await _context.Categories.AsNoTracking().ToListAsync();
+            return await _context.Persons.AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -39,22 +38,22 @@ namespace SuZhouSubway.Web.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<Category> Get(int id)
+        public async Task<Person> Get(int id)
         {
-            return await _context.Categories.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+            return await _context.Persons.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        // POST: api/Category
+        // POST: api/Person
         [HttpPost]
-        public async Task Post([FromBody] Category value)
+        public async Task Post([FromBody] Person value)
         {
-            await _context.Categories.AddAsync(value);
+            await _context.Persons.AddAsync(value);
             await _context.SaveChangesAsync();
         }
 
-        // PUT: api/Category/5
+        // PUT: api/Person/5
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] Category value)
+        public async Task Put(int id, [FromBody] Person value)
         {
             var data = await Get(id);
             if (data == null)
@@ -63,6 +62,10 @@ namespace SuZhouSubway.Web.Controllers
             }
             else
             {
+                data.Duties = value.Duties;
+                data.Description = value.Description;
+                data.HeadPhoto = value.HeadPhoto;
+                data.JobNumber = value.JobNumber;
                 data.Name = value.Name;
                 data.Enabled = value.Enabled;
                 data.Order = value.Order;
@@ -82,7 +85,7 @@ namespace SuZhouSubway.Web.Controllers
                 return;
             }
 
-            _context.Categories.Remove(data);
+            _context.Persons.Remove(data);
             await _context.SaveChangesAsync();
         }
     }

@@ -2,16 +2,19 @@
 @{
 
     Layout = "_Layout";
-
 }
 
- 
 <form>
     <div class="form-group row">
         <label for="Name" class="col-sm-2 col-form-label">名称</label>
         <div class="col-sm-10">
             @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Name" class="col-sm-2 col-form-label">排序</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Order, new { @class = "form-control", @type = "number",@value="0" })
         </div>
     </div>
     <div class="form-group row">
@@ -19,7 +22,6 @@
         <div class="col-sm-10">
             <div class="form-check">
                 @Html.CheckBoxFor(x => x.Enabled, new { @class = "form-check-input" })
-
                 <label class="form-check-label" for="Enabled">
                     启用/禁用
                 </label>
@@ -34,7 +36,6 @@
     @Html.HiddenFor(x => x.Id)
 </form>
 <script>
-
     // 提交表单
     function submitForm() {
         // 获取值
@@ -59,7 +60,6 @@
             //            submitData.id = id;
             url = url + id;
         }
-
 
         // 提交表单
         $.ajax({

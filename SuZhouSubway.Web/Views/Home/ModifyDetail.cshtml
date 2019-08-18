@@ -1,24 +1,38 @@
 ﻿@model SuZhouSubway.Model.Detail
 @{
-
     Layout = "_Layout";
 }
-<link href="/lib/wangEditor/wangEditor.min.css" />
- 
+<link href="/lib/wangEditor/wangEditor.min.css"/>
 <form>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="CategoryId">栏目</label>
         <div class="col-sm-10">
-            @Html.DropDownListFor(x => x.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Categories, new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.CategoryId, (IEnumerable<SelectListItem>) ViewBag.Categories, new {@class = "form-control"})
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Title">标题</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+            @Html.TextBoxFor(x => x.Title, new {@class = "form-control"})
         </div>
     </div>
-
+    <div class="form-group row">
+        <label for="Name" class="col-sm-2 col-form-label">排序</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Order, new { @class = "form-control", @type = "number",@value="0" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">状态</div>
+        <div class="col-sm-10">
+            <div class="form-check">
+                @Html.CheckBoxFor(x => x.Enabled, new {@class = "form-check-input"})
+                <label class="form-check-label" for="Enabled">
+                    启用/禁用
+                </label>
+            </div>
+        </div>
+    </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">正文</label>
         <div class="col-sm-10">
@@ -29,7 +43,6 @@
     </div>
     <div class="form-group row">
         <div class="col-sm-10">
-
             <button type="button" onclick="submitForm();" class="btn btn-primary">提交</button>
         </div>
     </div>
@@ -38,11 +51,11 @@
 
 <script src="/lib/wangEditor/wangEditor.min.js"></script>
 <script>
-    var editor2;   // 初始化 WangEditor
+    var editor2; // 初始化 WangEditor
     var E = window.wangEditor;
     var editor2 = new E('#data');
     //editor2.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-    editor2.customConfig.uploadImgServer = '@Url.Action("Upload","FileUpload")';
+    editor2.customConfig.uploadImgServer = '@Url.Action("Upload", "FileUpload")';
     editor2.create();
     // 从隐藏域中获取 正文，判断是否需要初始化 区域的内容
     var data = $("#Contents").val();
@@ -51,7 +64,6 @@
     } else {
         editor2.txt.html(data);
     }
-
 
     // 提交表单
     function submitForm() {
@@ -76,7 +88,6 @@
             url = url + id;
         }
 
-
         // 提交表单
         // 提交表单
         $.ajax({
@@ -84,12 +95,10 @@
             contentType: "application/json",
             type: submitType,
             data: JSON.stringify(submitData)
-        }).done(function () {
+        }).done(function() {
             window.location.href = "/Home/Detail";
-        }).fail(function (data) {
+        }).fail(function(data) {
             alert(data);
         });
     }
-
-
 </script>

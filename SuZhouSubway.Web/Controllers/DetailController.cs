@@ -67,6 +67,8 @@ namespace SuZhouSubway.Web.Controllers
                 data.CategoryId = value.CategoryId;
                 data.Contents = value.Contents;
                 data.CoverImage = value.CoverImage;
+                data.Enabled = value.Enabled;
+                data.Order = value.Order;
             }
 
             _context.Update(data);

@@ -51,6 +51,15 @@ namespace SuZhouSubway.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
+            {
+                app.UseExceptionHandler("/Error");
+            }
             /*app.UseMvc();*/
             app.UseMvc(routes =>
             {
