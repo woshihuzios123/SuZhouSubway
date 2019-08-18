@@ -7,4 +7,6 @@
 /SuZhouSubway.Web/obj
 /SuZhouSubway.Web/bin
 /.vs
+/.vs/Server/sqlite3
+/.vs/Server/sqlite3/.suo
 /publish
