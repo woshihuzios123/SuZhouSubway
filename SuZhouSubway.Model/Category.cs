@@ -19,9 +19,9 @@ namespace SuZhouSubway.Model
         /// </summary>
         public ICollection<Detail> Details { get; set; }
 
-        /// <summary>
+        /*/// <summary>
         /// 如果存在，则为子导航
         /// </summary>
-        public ICollection<Category> Categories { get; set; }
+        public ICollection<Category> Categories { get; set; }*/
     }
 }
