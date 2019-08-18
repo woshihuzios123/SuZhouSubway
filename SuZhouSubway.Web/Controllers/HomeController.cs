@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SuZhouSubway.Model.Data;
 using SuZhouSubway.Web.Models;
+using SuZhouSubway.Web.Models.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using SuZhouSubway.Web.Models.ViewModels;
 
 namespace SuZhouSubway.Web.Controllers
 {

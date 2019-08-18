@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using SuZhouSubway.Model.Data;
 using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SuZhouSubway.Web
 {
@@ -29,7 +30,8 @@ namespace SuZhouSubway.Web
             try
             {
                 var context = services.GetRequiredService<SubwayDbContext>();
-                await DbInitializer.Initialize(context);
+//                await context.Database.MigrateAsync(); // 迁移数据库
+                await DbInitializer.Initialize(context); // 
             }
             catch (Exception e)
             {

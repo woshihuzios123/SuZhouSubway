@@ -8,6 +8,7 @@ namespace SuZhouSubway.Model.Data
     {
         public static async Task Initialize(SubwayDbContext context)
         {
+              
             await context.Database.EnsureCreatedAsync();
 
             if (await context.Details.AnyAsync() || await context.Categories.AnyAsync())
