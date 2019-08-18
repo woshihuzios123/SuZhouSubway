@@ -21,10 +21,13 @@ namespace SuZhouSubway.Model.Data
         /// </summary>
         public DbSet<Detail> Details { get; set; }
 
+        /// <summary>
+        /// 人员表
+        /// </summary>
+        public DbSet<Person> Persons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             /*modelBuilder.Entity<Category>();
             modelBuilder.Entity<Detail>();*/
             base.OnModelCreating(modelBuilder);
