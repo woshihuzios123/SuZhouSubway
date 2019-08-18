@@ -41,7 +41,8 @@
     var editor2;   // 初始化 WangEditor
     var E = window.wangEditor;
     var editor2 = new E('#data');
-    editor2.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+    //editor2.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+    editor2.customConfig.uploadImgServer = '@Url.Action("Upload","FileUpload")';
     editor2.create();
     // 从隐藏域中获取 正文，判断是否需要初始化 区域的内容
     var data = $("#Contents").val();

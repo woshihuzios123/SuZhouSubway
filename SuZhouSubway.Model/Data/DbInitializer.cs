@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SuZhouSubway.Model.Data
@@ -9,13 +8,9 @@ namespace SuZhouSubway.Model.Data
     {
         public static async Task Initialize(SubwayDbContext context)
         {
-            if (!context.Database.GetService<IRelationalDatabaseCreator>().Exists())
+            if ((await context.Database.GetPendingMigrationsAsync()).Any())
             {
-                await context.Database.MigrateAsync(); // 迁移数据库
-            }
-            else
-            {
-                await context.Database.EnsureCreatedAsync();// 初始化数据库
+                await context.Database.MigrateAsync();
             }
         }
     }

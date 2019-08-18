@@ -5,6 +5,7 @@ namespace SuZhouSubway.Model.Data
     /// <summary>
     /// 数据库连接对象
     /// </summary>
+ 
     public class SubwayDbContext : DbContext
     {
         public SubwayDbContext(DbContextOptions<SubwayDbContext> options) : base(options)
@@ -25,12 +26,5 @@ namespace SuZhouSubway.Model.Data
         /// 人员表
         /// </summary>
         public DbSet<Person> Persons { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            /*modelBuilder.Entity<Category>();
-            modelBuilder.Entity<Detail>();*/
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }

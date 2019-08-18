@@ -16,10 +16,7 @@ namespace SuZhouSubway.Model.Migrations
                     Name = table.Column<string>(nullable: true),
                     Enabled = table.Column<bool>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Categories", x => x.Id); });
 
             migrationBuilder.CreateTable(
                 name: "Details",
