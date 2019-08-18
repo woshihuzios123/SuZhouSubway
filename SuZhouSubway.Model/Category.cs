@@ -1,32 +1,27 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using SuZhouSubway.Model.Data;
+using System.Collections.Generic;
 
 namespace SuZhouSubway.Model
 {
-    public class Category
+    /// <summary>
+    /// 栏目
+    /// </summary>
+    public class Category : BaseModel
     {
-        /// <summary>
-        /// 主键
-        /// </summary>
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         /// <summary>
         /// 名称
         /// </summary>
         public string Name { get; set; }
-
-
-        /// <summary>
-        /// 是否启用
-        /// </summary>
-        public bool Enabled { get; set; }
 
         /// <summary>
         /// 详情
         /// 导航属性
         /// </summary>
         public ICollection<Detail> Details { get; set; }
+
+        /// <summary>
+        /// 如果存在，则为子导航
+        /// </summary>
+        public ICollection<Category> Categories { get; set; }
     }
 }

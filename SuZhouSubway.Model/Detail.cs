@@ -1,17 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using SuZhouSubway.Model.Data;
 
 namespace SuZhouSubway.Model
 {
-    public class Detail
+    public class Detail : BaseModel
     {
-        /// <summary>
-        /// 主键
-        /// </summary>
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
-
         /// <summary>
         /// 标题
         /// </summary>
@@ -22,6 +14,7 @@ namespace SuZhouSubway.Model
         /// 封面图片
         /// </summary>
         public string CoverImage { get; set; }
+
 
         /// <summary>
         /// 正文
@@ -39,10 +32,5 @@ namespace SuZhouSubway.Model
         /// 导航属性
         /// </summary>
         public Category Category { get; set; }
-
-        /*/// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime CreatedTime { get; set; }*/
     }
 }
