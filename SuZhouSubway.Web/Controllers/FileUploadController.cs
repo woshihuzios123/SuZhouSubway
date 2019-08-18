@@ -33,7 +33,6 @@ namespace SuZhouSubway.Web.Controllers
                     Errno = 1,
                     Data = new string[] { }
                 };
-                /*return MessageDto<string>.Fail("", "上传失败，未获取到文件。");*/
             }
 
             var webRootPath = _hostingEnvironment.WebRootPath;
@@ -45,7 +44,7 @@ namespace SuZhouSubway.Web.Controllers
             }
 
             var file = forms.Files.First();
-            if (file.Length == 0) /*return MessageDto<string>.Fail("", "上传失败，未获取到文件。");*/
+            if (file.Length == 0)
                 return new FileUploadDto()
                 {
                     Errno = 1,
@@ -58,16 +57,14 @@ namespace SuZhouSubway.Web.Controllers
             {
                 // 保存到本地
                 file.CopyTo(fs);
-                //fs.Flush(); // 自动flush
             }
 
             // 返回路径
             return new FileUploadDto()
             {
                 Errno = 0,
-                Data = new string[] {"/file/"+fileName}
+                Data = new[] {"/file/" + fileName}
             };
-            /*return MessageDto<string>.Success(fileName, "上传失败，未获取到文件。");*/
         }
     }
 }
