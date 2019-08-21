@@ -1,12 +1,10 @@
 ﻿@model SuZhouSubway.Model.Detail
 
-<link href="/css/detail.css" />
+@{
+    Layout = "_FrontPageLayout";
+}
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <main role="main" class="inner cover">
-        <h1 class="cover-heading">@Model.Title</h1>
-        <p class="lead">
-            @Html.Raw(Model.Contents)
-        </p>
-    </main>
+<div class="container-fluid">
+    <h3 class="text-center m-4">@Model.Title</h3>
+    <div class="container">@Html.Raw(Model.Contents)</div>
 </div>

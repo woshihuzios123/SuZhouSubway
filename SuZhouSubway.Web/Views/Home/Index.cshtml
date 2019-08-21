@@ -1,69 +1,15 @@
-﻿@model SuZhouSubway.Web.Models.ViewModels.IndexViewModel
-<div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
+﻿@model List<SuZhouSubway.Model.Category>
 
-        @foreach (var c in Model.NavigationCategories)
-        {
-            <a class="p-2 text-muted" asp-action="Index" asp-route-id="@c.Id">@c.Name</a>
-        }
-    </nav>
+@{
+    Layout = "_FrontPageLayout";
+}
+
+
+<div >
+    @foreach (var data in Model)
+    {
+        <a class="p-2" asp-action="DetailList" asp-route-id="@data.Id">
+            <h3 class="pb-3 mb-4 text-center border-bottom">@data.Name</h3>
+        </a>
+    }
 </div>
-<main role="main" class="container">
-    <div class="row">
-        <div class="col-md-8">
-            @if (Model.CurrentCategory != null && Model.CurrentCategory.Details != null && Model.CurrentCategory.Details.Count > 0)
-            {
-                @foreach (var d in Model.CurrentCategory.Details)
-                {
-                    @*<a href="@Url.Action("Detail","Home")">*@
-
-                    <a class="p-2" asp-action="DetailDetails" asp-route-id="@d.Id">
-                        <h3 class="pb-3 mb-4 font-italic border-bottom">
-                            @d.Title
-                        </h3>
-                    </a>
-                    @*</a>*@
-                    @*<div class="blog-post">
-                            @Html.Raw(d.Contents)
-                        </div>*@
-                }
-            }
-            else
-            {
-                <h3 class="pb-3 mb-4 font-italic border-bottom">
-                    暂无内容
-                </h3>
-                @*<div class="blog-post">
-                        暂无内容
-                    </div>*@
-            }
-        </div>
-
-
-        <aside class="col-md-4 ">
-            <div class="p-3 mb-3 bg-light rounded">
-                <h4 class="font-italic">维修四班</h4>
-                <p class="mb-0">
-                    态度决定一切，细节决定成败
-                </p>
-                <br/>
-                <p class="mb-0">
-                    个人无违章，生产无隐患，班组无事故
-                </p>
-            </div>
-            <div class="p-3">
-                <h4 class="font-italic">速览</h4>
-                <ol class="list-unstyled mb-0">
-                    @foreach (var c in Model.NavigationCategories)
-                    {
-                        <li>
-                            <a class="p-2" asp-action="Index" asp-route-id="@c.Id">@c.Name</a>
-                        </li>
-                    }
-
-                </ol>
-            </div>
-
-        </aside>
-    </div>
-</main>

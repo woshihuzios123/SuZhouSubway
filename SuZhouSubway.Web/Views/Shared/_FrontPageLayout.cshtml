@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>苏州地铁-设备维修四班@(string.IsNullOrEmpty(ViewBag.Title) ? "" : " - " + ViewBag.Title)</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="/lib/qrCode/qrious.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <header class="container-fluid text-center">
+        <h1>设备维修四班</h1>
+        <h5 class="m-4">态度决定一切，细节决定成败</h5>
+    </header>
+    <main role="main" class="container-fluid">
+        <div class="container">
+            <img class="img-fluid d-block mx-auto" style="width: 50%; height: 50%;" src="/img/logo.png" />
+        </div>
+        @RenderBody()
+    </main>
+    <footer class="container-fluid fixed-bottom">
+        <div class="  text-center">
+            <h5>
+                个人无违章&nbsp;生产无隐患&nbsp;班组无事故
+            </h5>
+        </div>
+        <div class="text-center text-muted">
+            <a href="http://www.sz-mtr.com/">维修四班</a>
+            &nbsp;
+            <a href="javascript:;" onclick="exportQrCode();">导出当前页二维码</a>
+            &nbsp;
+            <a href="javascript:window.history.go(-1);">返回</a>
+        </div>
+    </footer>
+    <script>
+        function exportQrCode() {
+            // 获取当前页面url
+            var url = window.location.href;
+            exportQrCodeByUrl(url);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@model List<SuZhouSubway.Model.Detail>
+
+@{
+    Layout = "_FrontPageLayout";
+}
+
+<div>
+    @foreach (var data in Model)
+    {
+        <a class="p-2" asp-action="DetailDetails" asp-route-id="@data.Id">
+            <h3 class="pb-3 mb-4 text-center border-bottom">@data.Title</h3>
+        </a>
+    }
+</div>

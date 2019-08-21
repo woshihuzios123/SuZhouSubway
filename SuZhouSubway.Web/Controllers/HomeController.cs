@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SuZhouSubway.Model.Data;
 using SuZhouSubway.Web.Models;
-using SuZhouSubway.Web.Models.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -29,40 +28,19 @@ namespace SuZhouSubway.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index()
         {
             var categories = await _context.Categories.OrderBy(x => x.Order).ToListAsync();
-            var indexViewModel = new IndexViewModel()
-            {
-                NavigationCategories = categories,
-            };
+            return View(categories);
+        }
 
-            if (id != null && id.Value > 0)
-            {
-                indexViewModel.CurrentCategory =
-                    await _context.Categories
-                        .OrderBy(x => x.Order)
-                        .Include(x => x.Details
-                            /*.OrderBy(z => z.Order)*/)
-                        .FirstOrDefaultAsync(x => x.Id == id.Value);
-            }
-            else
-            {
-                indexViewModel.CurrentCategory =
-                    await _context.Categories
-                        .OrderBy(x => x.Order)
-                        .Include(x => x.Details
-                            /*.OrderBy(z => z.Order)*/)
-                        .FirstOrDefaultAsync();
-            }
-
-            if (indexViewModel.CurrentCategory?.Details != null && indexViewModel.CurrentCategory.Details.Any())
-            {
-                indexViewModel.CurrentCategory.Details =
-                    indexViewModel.CurrentCategory.Details.OrderBy(x => x.Order).ToList();
-            }
-
-            return View(indexViewModel);
+        public async Task<IActionResult> DetailList(int categoryId)
+        {
+            /*var category = await _context.Categories.Include(x => x.Details)
+                .FirstOrDefaultAsync(x => x.Id == categoryId);
+            var details = category.Details;*/
+            var details = await _context.Details.Where(x => x.CategoryId == categoryId).ToListAsync();
+            return View(details);
         }
 
 
@@ -177,7 +155,7 @@ namespace SuZhouSubway.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
