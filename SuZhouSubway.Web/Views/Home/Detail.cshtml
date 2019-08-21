@@ -3,10 +3,7 @@
 @{
     ViewData["Title"] = "栏目列表";
 }
-
-
 <h2>详情</h2>
-
 <p>
     <a asp-action="ModifyDetail">添加新详情</a>
     &nbsp;
@@ -14,63 +11,55 @@
 </p>
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th>
-                详情名称
-            </th>
-            <th></th>
-            <th>
-                操作
-            </th>
-        </tr>
+    <tr>
+        <th>
+            详情名称
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
     </thead>
     <tbody>
-        @if (Model == null || !Model.Any())
+    @if (Model == null || !Model.Any())
+    {
+        <tr>
+            <td colspan="3">
+                暂无内容
+            </td>
+        </tr>
+    }
+    else
+    {
+        @foreach (var item in Model)
         {
             <tr>
-                <td colspan="3">
-                    暂无内容
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    <a href="javascript:;" onclick="exportQrCodeByDetailId(@item.Id);">导出二维码</a>|
+                    <a asp-action="DetailDetails" asp-route-id="@item.Id">详情</a>|
+                    <a asp-action="ModifyDetail" asp-route-id="@item.Id">编辑</a> |
+                    <a href="javascript:;" onclick="deleteDetail(@item.Id);">删除</a>
                 </td>
             </tr>
         }
-        else
-        {
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.Enabled ? "启用" : "禁用")*@
-                    </td>
-
-                    <td>
-                        <a href="javascript:;" onclick="exportQrCodeByDetailId(@item.Id);">导出二维码</a>|
-                        <a asp-action="DetailDetails" asp-route-id="@item.Id">详情</a>|
-                        <a asp-action="ModifyDetail" asp-route-id="@item.Id">编辑</a> |
-                        <a href="javascript:;" onclick="deleteDetail(@item.Id);">删除</a>
-                    </td>
-                </tr>
-            }
-        }
+    }
     </tbody>
 </table>
-
 <script>
-
     function deleteDetail(id) {
         if (!confirm("确定要删除吗？")) {
             return;
         }
-
         $.ajax({
             url: "/Api/Detail" + id,
             type: "DELETE"
-        }).done(function () {
+        }).done(function() {
             alert("删除成功！");
             window.location.reload();
-        }).fail(function () {
+        }).fail(function() {
             alert("删除失败");
         });
 
@@ -81,10 +70,9 @@
         exportQrCodeByUrl(url);
     }
 
-
     function exportQrCode() {
         // 获取当前页面url
         var url = window.location.href;
         exportQrCodeByUrl(url);
     }
-</script> 
+</script>

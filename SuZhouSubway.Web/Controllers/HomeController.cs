@@ -34,11 +34,8 @@ namespace SuZhouSubway.Web.Controllers
             return View(categories);
         }
 
-        public async Task<IActionResult> DetailList([FromRoute(Name = "id")]int categoryId)
+        public async Task<IActionResult> DetailList([FromRoute(Name = "id")] int categoryId)
         {
-            /*var category = await _context.Categories.Include(x => x.Details)
-                .FirstOrDefaultAsync(x => x.Id == categoryId);
-            var details = category.Details;*/
             var details = await _context.Details.Where(x => x.CategoryId == categoryId).ToListAsync();
             return View(details);
         }
@@ -132,21 +129,6 @@ namespace SuZhouSubway.Web.Controllers
             return View(detail);
         }
 
-        /*/// <summary>
-        /// 获取栏目详情
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<IActionResult> CategoryDetails(int id)
-        {
-            var category = await _context.Categories.SingleOrDefaultAsync(x => x.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
-        }*/
 
         /// <summary>
         /// 错误页面
@@ -155,7 +137,7 @@ namespace SuZhouSubway.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
     }
 }

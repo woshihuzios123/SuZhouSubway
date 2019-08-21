@@ -5,7 +5,6 @@ namespace SuZhouSubway.Model.Data
     /// <summary>
     /// 数据库连接对象
     /// </summary>
- 
     public class SubwayDbContext : DbContext
     {
         public SubwayDbContext(DbContextOptions<SubwayDbContext> options) : base(options)

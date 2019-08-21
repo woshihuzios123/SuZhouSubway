@@ -1,5 +1,3 @@
-using System;
-
 namespace SuZhouSubway.Web.Models
 {
     public class ErrorViewModel

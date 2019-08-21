@@ -12,9 +12,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="Name" class="col-sm-2 col-form-label">排序</label>
+        <label for="Order" class="col-sm-2 col-form-label">排序</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(x => x.Order, new { @class = "form-control", @type = "number",@value="0" })
+            @Html.TextBoxFor(x => x.Order, new { @class = "form-control", type = "number", value = "0" })
         </div>
     </div>
     <div class="form-group row">
@@ -51,7 +51,6 @@
         var url = "/Api/Category/";
 
         // 判断id是否存在，type 为 put或post
-
         var submitType = "POST";
         if (!id) {
 

@@ -1,4 +1,5 @@
-﻿function exportQrCodeByUrl(url) {
+﻿//生成二维码
+function exportQrCodeByUrl(url) {
     //首先在页面创建一个隐藏div
     var qr = new QRious({
         value: url
@@ -14,7 +15,7 @@ function download(src) {
     clearTimeout();
 }
 
-//下载
+////下载
 function downloadFile(fileName, content) {
     var aLink = document.createElement('a');
     var blob = this.base64ToBlob(content); //new Blob([content]);
@@ -23,9 +24,6 @@ function downloadFile(fileName, content) {
     evt.initEvent("click", true, true); //initEvent 不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为
     aLink.download = fileName;
     aLink.href = URL.createObjectURL(blob);
-
-    // aLink.dispatchEvent(evt);
-    //aLink.click()
     aLink.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); //兼容火狐
 }
 
