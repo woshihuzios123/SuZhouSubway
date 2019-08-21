@@ -34,7 +34,7 @@ namespace SuZhouSubway.Web.Controllers
             return View(categories);
         }
 
-        public async Task<IActionResult> DetailList(int categoryId)
+        public async Task<IActionResult> DetailList([FromRoute(Name = "id")]int categoryId)
         {
             /*var category = await _context.Categories.Include(x => x.Details)
                 .FirstOrDefaultAsync(x => x.Id == categoryId);
