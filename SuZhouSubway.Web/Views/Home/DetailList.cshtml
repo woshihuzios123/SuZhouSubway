@@ -1,14 +1,49 @@
-﻿@model List<SuZhouSubway.Model.Detail>
+﻿@model SuZhouSubway.Web.Models.ViewModels.DetailListDto
 
 @{
     Layout = "_FrontPageLayout";
+    var id = 1;
 }
+<style>
+    .title1 { font-style: italic; }
 
-<div>
-    @foreach (var data in Model)
+    .roundNumber {
+        border-radius: 100%;
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        background: white;
+        vertical-align: top;
+        border: 1px solid black;
+    }
+
+    .roundNumber span {
+        display: block;
+        color: black;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+</style>
+
+<h2 class="text-center">@(Model.Category != null ? Model.Category.Name : "")</h2>
+
+<div class="m-2 container text-center">
+    @Html.Raw(Model.Category?.Description ?? "暂无简介")
+</div>
+
+
+<div class="title1">
+    @foreach (var data in Model.Details)
     {
         <a class="p-2" asp-action="DetailDetails" asp-route-id="@data.Id">
-            <h3 class="pb-3 mb-4 text-center border-bottom">@data.Title</h3>
+            <h4 class="pb-3 mb-4 text-center border-bottom">
+                <span class="roundNumber">
+                    <span> @id </span>
+                </span>
+                @data.Title
+            </h4>
         </a>
+        <span style="display: none;">@(id++)</span>
     }
 </div>

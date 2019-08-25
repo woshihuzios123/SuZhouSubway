@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using SuZhouSubway.Web.Models.ViewModels;
 
 namespace SuZhouSubway.Web.Controllers
 {
-
     /// <summary>
     /// Front And BackEnd
     /// </summary>
@@ -48,11 +48,18 @@ namespace SuZhouSubway.Web.Controllers
         /// <returns></returns>
         public async Task<IActionResult> DetailList([FromRoute(Name = "id")] int categoryId)
         {
+            var category = await _context.Categories.SingleOrDefaultAsync(x => x.Id == categoryId);
             var details = await _context.Details
                 .Where(x => x.CategoryId == categoryId && x.Enabled)
                 .OrderBy(x => x.Order)
                 .ToListAsync();
-            return View(details);
+
+
+            return View(new DetailListDto()
+            {
+                Details = details,
+                Category = category
+            });
         }
 
         /// <summary>
@@ -183,6 +190,7 @@ namespace SuZhouSubway.Web.Controllers
             {
                 return NotFound();
             }
+
             return View(person);
         }
 
@@ -193,7 +201,7 @@ namespace SuZhouSubway.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
     }
 }

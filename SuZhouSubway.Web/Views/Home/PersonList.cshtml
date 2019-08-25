@@ -3,3 +3,29 @@
 @{
     Layout = "_FrontPageLayout";
 }
+
+
+@foreach (var p in Model)
+{
+    <div class="row">
+
+        <div class="col ">
+            <a asp-action="PersonDetails" asp-route-id="@p.Id">
+                @if (p.HeadPhoto != null && !string.IsNullOrEmpty(p.HeadPhoto))
+                {
+                    <img class="img-fluid d-block mx-auto" src="@p.HeadPhoto"/>
+                }
+                else
+                {
+                    <img class="img-fluid d-block mx-auto" src="/img/logo.png"/>
+                }
+            </a>
+        </div>
+        <div class="col" style="display: table-cell;">
+            <a asp-action="PersonDetails" asp-route-id="@p.Id">
+                <h1 class="text-center" style="position: absolute;">@p.Name</h1>
+            </a>
+        </div>
+
+    </div>
+}

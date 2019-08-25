@@ -4,4 +4,19 @@
     Layout = "_FrontPageLayout";
 }
 
- 
+    <div class="container-fluid">
+
+        <br />
+        <br />
+        <div class="container">
+            <img class="img-fluid d-block mx-auto" style="width: 50%; height: 50%;" src="@Model.HeadPhoto" />
+        </div>
+
+        <br />
+        <h3 class="text-center m-4">@Model.Name</h3>
+        <br />
+        <h6 class="text-center m-4">@Model.JobNumber</h6>
+        <h6 class="text-center m-4">@Model.Duties</h6>
+
+        <div class="container">@Html.Raw(Model.Description)</div>
+    </div>
