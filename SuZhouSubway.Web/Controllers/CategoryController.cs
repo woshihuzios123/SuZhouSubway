@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SuZhouSubway.Web.Controllers
 {
+    /// <summary>
+    /// Category Api
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [ApiExplorerSettings]
@@ -44,7 +47,12 @@ namespace SuZhouSubway.Web.Controllers
             return await _context.Categories.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        // POST: api/Category
+
+        /// <summary>
+        /// 保存category
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task Post([FromBody] Category value)
         {
@@ -52,7 +60,12 @@ namespace SuZhouSubway.Web.Controllers
             await _context.SaveChangesAsync();
         }
 
-        // PUT: api/Category/5
+        /// <summary>
+        /// 更新category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task Put(int id, [FromBody] Category value)
         {
@@ -66,13 +79,18 @@ namespace SuZhouSubway.Web.Controllers
                 data.Name = value.Name;
                 data.Enabled = value.Enabled;
                 data.Order = value.Order;
+                data.Description = value.Description;
             }
 
             _context.Update(data);
             await _context.SaveChangesAsync();
         }
 
-        // DELETE: api/ApiWithActions/5
+        /// <summary>
+        /// 删除category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {

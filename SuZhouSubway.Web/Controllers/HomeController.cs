@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace SuZhouSubway.Web.Controllers
 {
+
+    /// <summary>
+    /// Front And BackEnd
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly SubwayDbContext _context;
@@ -24,20 +28,41 @@ namespace SuZhouSubway.Web.Controllers
 
 
         /// <summary>
-        /// 主页
+        /// front-主页
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = await _context.Categories.OrderBy(x => x.Order).ToListAsync();
+            var categories = await _context.Categories
+                .Where(x => x.Enabled)
+                .OrderBy(x => x.Order).ToListAsync();
             return View(categories);
         }
 
+
+        /// <summary>
+        /// front-文章列表
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         public async Task<IActionResult> DetailList([FromRoute(Name = "id")] int categoryId)
         {
-            var details = await _context.Details.Where(x => x.CategoryId == categoryId).ToListAsync();
+            var details = await _context.Details
+                .Where(x => x.CategoryId == categoryId && x.Enabled)
+                .OrderBy(x => x.Order)
+                .ToListAsync();
             return View(details);
+        }
+
+        /// <summary>
+        /// front-人员列表（人员风采）
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> PersonList()
+        {
+            var persons = await _context.Persons.Where(x => x.Enabled).OrderBy(x => x.Order).ToListAsync();
+            return View(persons);
         }
 
 
@@ -61,6 +86,12 @@ namespace SuZhouSubway.Web.Controllers
         {
             var categories = await _context.Categories.OrderBy(x => x.Order).ToListAsync();
             return View(categories);
+        }
+
+        public async Task<IActionResult> Person()
+        {
+            var persons = await _context.Persons.OrderBy(x => x.Order).ToListAsync();
+            return View(persons);
         }
 
         /// <summary>
@@ -112,8 +143,18 @@ namespace SuZhouSubway.Web.Controllers
         }
 
 
+        public async Task<IActionResult> ModifyPerson(int? id)
+        {
+            if (id == null || id == 0)
+                return View();
+            var person = await _context.Persons.SingleOrDefaultAsync(x => x.Id == id);
+            return View(person);
+        }
+
+
         /// <summary>
-        /// 获取详情的详情
+        /// front-获取详情的详情
+        /// 预览
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -131,13 +172,28 @@ namespace SuZhouSubway.Web.Controllers
 
 
         /// <summary>
+        /// front-人员详情（员工风采详情）
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> PersonDetails(int id)
+        {
+            var person = await _context.Persons.SingleOrDefaultAsync(x => x.Id == id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+            return View(person);
+        }
+
+        /// <summary>
         /// 错误页面
         /// </summary>
         /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

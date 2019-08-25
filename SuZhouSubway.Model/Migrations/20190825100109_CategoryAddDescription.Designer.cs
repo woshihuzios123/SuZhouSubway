@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SuZhouSubway.Model.Data;
 
 namespace SuZhouSubway.Model.Migrations
 {
     [DbContext(typeof(SubwayDbContext))]
-    partial class SubwayDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190825100109_CategoryAddDescription")]
+    partial class CategoryAddDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +47,8 @@ namespace SuZhouSubway.Model.Migrations
                     b.Property<int?>("CategoryId");
 
                     b.Property<string>("Contents");
+
+                    b.Property<string>("CoverImage");
 
                     b.Property<DateTime>("CreatedTime");
 

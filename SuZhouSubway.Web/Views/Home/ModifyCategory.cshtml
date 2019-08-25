@@ -4,6 +4,7 @@
     Layout = "_Layout";
 }
 
+<link href="/lib/wangEditor/wangEditor.min.css" />
 <form>
     <div class="form-group row">
         <label for="Name" class="col-sm-2 col-form-label">名称</label>
@@ -29,26 +30,51 @@
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-sm-2 col-form-label">正文</label>
+        <div class="col-sm-10">
+            <div id="data"></div>
+            @Html.HiddenFor(x => x.Description)
+        </div>
+    </div>
+    <div class="form-group row">
         <div class="col-sm-10">
             <button type="button" onclick="submitForm();" class="btn btn-primary">保存</button>
         </div>
     </div>
     @Html.HiddenFor(x => x.Id)
 </form>
+
+<script src="/lib/wangEditor/wangEditor.min.js"></script>
 <script>
+    var editor2; // 初始化 WangEditor
+    var E = window.wangEditor;
+    var editor2 = new E('#data');
+    //editor2.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+    editor2.customConfig.uploadImgServer = '@Url.Action("Upload", "FileUpload")';
+    editor2.create();
+    // 从隐藏域中获取 正文，判断是否需要初始化 区域的内容
+    var data = $("#Description").val();
+    if (!data) {
+
+    } else {
+        editor2.txt.html(data);
+    }
+
     // 提交表单
     function submitForm() {
         // 获取值
         var name = $("#Name").val();
-        var enabled = !!($("#Enabled").val());
+        var enabled = $("#Enabled").is(":checked");//!!($("#Enabled").val());
+        var contents = editor2.txt.html();
+
         var id = $("#Id").val();
 
         var submitData = {
             name: name,
-            enabled: enabled
-
+            enabled: enabled,
+            description:contents
         };
-        var url = "/Api/Category/";
+        var url =  "/Api/Category/";
 
         // 判断id是否存在，type 为 put或post
         var submitType = "POST";
@@ -66,9 +92,9 @@
             contentType: "application/json",
             type: submitType,
             data: JSON.stringify(submitData)
-        }).done(function () {
+        }).done(function() {
             window.location.href = "/Home/Category";
-        }).fail(function (data) {
+        }).fail(function(data) {
             alert(data);
         });
     }

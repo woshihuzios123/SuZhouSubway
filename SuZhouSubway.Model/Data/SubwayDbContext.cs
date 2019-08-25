@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace SuZhouSubway.Model.Data
 {
@@ -25,5 +26,7 @@ namespace SuZhouSubway.Model.Data
         /// 人员表
         /// </summary>
         public DbSet<Person> Persons { get; set; }
+
+
     }
 }

@@ -14,14 +14,19 @@ namespace SuZhouSubway.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// 简介
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// 详情
         /// 导航属性
         /// </summary>
         public ICollection<Detail> Details { get; set; }
 
-        /// <summary>
+        /*/// <summary>
         /// 如果存在，则为子导航
         /// </summary>
-        public ICollection<Category> Categories { get; set; }
+        public ICollection<Category> Categories { get; set; }*/
     }
 }

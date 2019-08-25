@@ -10,10 +10,10 @@ namespace SuZhouSubway.Model
         public string Title { get; set; }
 
 
-        /// <summary>
+        /*/// <summary>
         /// 封面图片
         /// </summary>
-        public string CoverImage { get; set; }
+        public string CoverImage { get; set; }*/
 
 
         /// <summary>

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SuZhouSubway.Web.Controllers
 {
+    /// <summary>
+    /// Detail Api
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [ApiExplorerSettings]
@@ -27,7 +30,7 @@ namespace SuZhouSubway.Web.Controllers
         /// 获取列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet("")]
+        [HttpGet]
         public async Task<IEnumerable<Detail>> Get()
         {
             return await _context.Details.AsNoTracking().ToListAsync();
@@ -44,7 +47,11 @@ namespace SuZhouSubway.Web.Controllers
             return await _context.Details.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        // POST: api/Detail
+        /// <summary>
+        /// 添加 详情
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task Post([FromBody] Detail value)
         {
@@ -52,7 +59,12 @@ namespace SuZhouSubway.Web.Controllers
             await _context.SaveChangesAsync();
         }
 
-        // PUT: api/Detail/5
+        /// <summary>
+        /// 更新详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task Put(int id, [FromBody] Detail value)
         {
@@ -63,19 +75,23 @@ namespace SuZhouSubway.Web.Controllers
             }
             else
             {
-                data.Title = value.Title;
                 data.CategoryId = value.CategoryId;
-                data.Contents = value.Contents;
-                data.CoverImage = value.CoverImage;
-                data.Enabled = value.Enabled;
+                data.Title = value.Title;
                 data.Order = value.Order;
+                data.Enabled = value.Enabled;
+                data.Contents = value.Contents;
+                /*data.CoverImage = value.CoverImage;*/
             }
 
             _context.Update(data);
             await _context.SaveChangesAsync();
         }
 
-        // DELETE: api/ApiWithActions/5
+        /// <summary>
+        /// 删除 详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {

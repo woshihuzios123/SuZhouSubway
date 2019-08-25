@@ -1,0 +1,176 @@
+﻿@model SuZhouSubway.Model.Person
+
+@{
+
+    Layout = "_Layout";
+}
+
+
+<link href="/lib/wangEditor/wangEditor.min.css"/>
+<form>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Name">姓名</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">图片预览</label>
+
+        <div class="col-md-10">
+            <img src="@(Model?.HeadPhoto ?? "")" style="width: 50%;" id="img1"/>
+            <p class="block"> *如果不上传则依旧使用旧的 </p>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="upload">头像</label>
+        <div class="col-sm-10">
+            <input type="file" name="files" id="files" class="form-control"/>
+
+            <br/><input class="btn btn-primary" type="button" id="upload" name="upload" value="点击上传"/>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Duties">职责</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Duties, new {@class = "form-control"})
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="JobNumber">工号</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.JobNumber, new {@class = "form-control"})
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Order">排序</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Order, new {@class = "form-control", @type = "number", @value = "0"})
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">状态</div>
+        <div class="col-sm-10">
+            <div class="form-check">
+                @Html.CheckBoxFor(x => x.Enabled, new {@class = "form-check-input"})
+                <label class="form-check-label" for="Enabled">
+                    启用/禁用
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">正文</label>
+        <div class="col-sm-10">
+            <div id="data"></div>
+            @Html.HiddenFor(x => x.Description)
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="button" onclick="submitForm();" class="btn btn-primary">提交</button>
+        </div>
+    </div>
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.HeadPhoto)
+</form>
+
+<script src="/lib/wangEditor/wangEditor.min.js"></script>
+<script>
+    var editor2; // 初始化 WangEditor
+    var E = window.wangEditor;
+    var editor2 = new E('#data');
+    //editor2.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+    editor2.customConfig.uploadImgServer = '@Url.Action("Upload", "FileUpload")';
+    editor2.create();
+    // 从隐藏域中获取 正文，判断是否需要初始化 区域的内容
+    var data = $("#Description").val();
+    if (!data) {
+
+    } else {
+        editor2.txt.html(data);
+    }
+
+    // 提交表单
+    function submitForm() {
+        // 获取值
+        var name = $("#Name").val();
+        var headPhoto = $("#HeadPhoto").val();
+        var description = editor2.txt.html();
+        var duties = $("#Duties").val();
+        var jobNumber = $("#JobNumber").val();
+        var enabled = $("#Enabled").is(":checked");
+        var order = $("#Order").val();
+        var id = $("#Id").val();
+
+        var submitData = {
+            name: name,
+            headPhoto: headPhoto,
+            enabled: enabled,
+            duties: duties,
+            jobNumber: jobNumber,
+            order: order,
+            description: description
+        };
+        var url = "/Api/Person/";
+        var submitType = "POST";
+        if (!id) {
+
+        } else {
+            submitType = "PUT";
+            url = url + id;
+        }
+
+        // 提交表单
+        // 提交表单
+        $.ajax({
+            url: url,
+            contentType: "application/json",
+            type: submitType,
+            data: JSON.stringify(submitData)
+        }).done(function() {
+            window.location.href = "/Home/Person";
+        }).fail(function(data) {
+            alert(data);
+        });
+    }
+
+    $('#upload').on('click',
+        function() {
+            var data = $("#files").get(0).files[0];
+            if (!data) {
+                alert("请选择图片");
+                return;
+            }
+            var fd = new FormData();
+            fd.append("otherParam", 1);
+            fd.append("file", $("#files").get(0).files[0]);
+            $.ajax({
+                url: '@Url.Action("UploadImage", "FileUpload")',
+                type: "POST",
+                //ajax2.0可以不用设置请求头，但是jq帮我们自动设置了，这样的话需要我们自己取消掉
+                contentType: false,
+                //取消帮我们格式化数据，是什么就是什么
+                processData: false,
+                data: fd
+            }).done(function(data) {
+                $("#HeadPhoto").val(data);
+                $("#img1").attr("src", data);
+
+                /*alert("上传完成，请不要刷新页面，点击下方提交即可提交");*/
+            }).fail(
+                function(d) {
+                    alert(d);
+                });
+        });
+
+</script>
