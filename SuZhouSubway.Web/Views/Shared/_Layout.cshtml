@@ -1,70 +1,69 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>苏州地铁-设备维修四班@(string.IsNullOrEmpty(ViewBag.Title) ? "" : " - " + ViewBag.Title)</title>
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
-    </environment>
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/site.css"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>     
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-<div class="container">
-    <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-12 text-center">
-                <a class="blog-header-logo text-dark" asp-area="" asp-controller="Home" asp-action="Index">设备维修四班</a>
+    <div class="container">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-12 text-center">
+                    <a class="blog-header-logo text-dark" asp-area="" asp-controller="Home" asp-action="Index">设备维修四班</a>
+                </div>
             </div>
-        </div>
-    </header>
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-        </script>
-    </environment>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="/lib/qrCode/qrious.min.js"></script>
-    @RenderSection("Scripts", required: false)
+        </header>
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+            </script>
+        </environment>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="/lib/qrCode/qrious.min.js"></script>
+        @RenderSection("Scripts", required: false)
 
-    <main role="main" class="container">
-        @RenderBody()
-    </main>
+        <main role="main" class="container">
+            @RenderBody()
+        </main>
 
-    <footer class="border-top text-muted blog-footer">
-        <p>&copy; @DateTime.Now.Year <a href="http://www.sz-mtr.com/">苏州地铁</a>-设备维修四班</p>
-        <p>
-            <a href="javascript:;" onclick="exportQrCode();">导出当前页二维码</a>
-        </p>
-    </footer>
-</div>
-<script>
-    function exportQrCode() {
-        // 获取当前页面url
-        var url = window.location.href;
-        exportQrCodeByUrl(url);
-    }
-</script>
+        <footer class="border-top text-muted blog-footer">
+            <p>&copy; @DateTime.Now.Year <a href="http://www.sz-mtr.com/">苏州地铁</a>-设备维修四班</p>
+            <p>
+                <a href="javascript:;" onclick="exportQrCode();">导出当前页二维码</a>
+            </p>
+        </footer>
+    </div>
+    <script>
+        function exportQrCode() {
+            // 获取当前页面url
+            var url = window.location.href;
+            exportQrCodeByUrl(url);
+        }
+    </script>
 </body>
 </html>
