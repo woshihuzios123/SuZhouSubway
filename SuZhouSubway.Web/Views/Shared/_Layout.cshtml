@@ -13,15 +13,15 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
-    </environment>     
+    </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <div class="container">
-        <header class="blog-header py-3">
+        <header class="py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-12 text-center">
-                    <a class="blog-header-logo text-dark" asp-area="" asp-controller="Home" asp-action="Index">设备维修四班</a>
+                    <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Index">设备维修四班</a>
                 </div>
             </div>
         </header>
@@ -51,7 +51,7 @@
             @RenderBody()
         </main>
 
-        <footer class="border-top text-muted blog-footer">
+        <footer class="border-top text-muted">
             <p>&copy; @DateTime.Now.Year <a href="http://www.sz-mtr.com/">苏州地铁</a>-设备维修四班</p>
             <p>
                 <a href="javascript:;" onclick="exportQrCode();">导出当前页二维码</a>

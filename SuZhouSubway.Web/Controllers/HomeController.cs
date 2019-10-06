@@ -78,10 +78,11 @@ namespace SuZhouSubway.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Detail()
+        public async Task<IActionResult> Detail(int? id)
         {
-            var details = await _context.Details.OrderBy(x => x.Order).ToListAsync();
-            return View(details);
+            return id != null ?
+                View(await _context.Details.Where(c => c.CategoryId == id).OrderBy(x => x.Order).ToListAsync())
+                : View(await _context.Details.OrderBy(x => x.Order).ToListAsync());
         }
 
         /// <summary>
@@ -201,7 +202,7 @@ namespace SuZhouSubway.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

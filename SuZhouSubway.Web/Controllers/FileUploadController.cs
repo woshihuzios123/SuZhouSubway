@@ -33,6 +33,7 @@ namespace SuZhouSubway.Web.Controllers
         /// </summary>
         /// <param name="forms"></param>
         /// <returns></returns>
+        [HttpPost("")]
         public FileUploadDto Upload([FromForm] IFormCollection forms)
         {
             try
@@ -88,7 +89,7 @@ namespace SuZhouSubway.Web.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("api/[controller]/UploadImage")]
         public string UploadImage([FromForm] IFormCollection forms)
         {
             if (forms?.Files == null || !forms.Files.Any())
